@@ -40,7 +40,7 @@ Dotenv API Security	Loads OpenAI key via .env file
 
 📂 File Structure
 
-AmalGPT/
+AmalGPTV1/
 ├── AmalGptV1.py               # Main CLI interface
 ├── memory.json                # Lightweight memory layer
 ├── prompt/
@@ -54,7 +54,7 @@ AmalGPT/
 ⚙️ Getting Started
 
 # Clone the repo
-$ git clone https://github.com/amal-k/amalgpt
+$ git clone https://github.com/amal-k/amalgptV1
 $ cd amalgptv1
 
 # Install dependencies
