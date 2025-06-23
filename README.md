@@ -55,7 +55,7 @@ AmalGPT/
 
 # Clone the repo
 $ git clone https://github.com/amal-k/amalgpt
-$ cd amalgpt
+$ cd amalgptv1
 
 # Install dependencies
 $ pip install openai python-dotenv
