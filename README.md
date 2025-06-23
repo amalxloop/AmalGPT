@@ -54,7 +54,7 @@ AmalGPTV1/
 ⚙️ Getting Started
 
 # Clone the repo
-$ git clone https://github.com/amal-k/amalgptV1
+$ git clone https://github.com/amalxloop/amalgptV1
 $ cd amalgptv1
 
 # Install dependencies
