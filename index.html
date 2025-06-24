@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AmalGPT — Recursive Agent</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --text: #c9d1d9;
+      --prompt: #58a6ff;
+      --terminal: #161b22;
+    }
+
+    [data-theme='light'] {
+      --bg: #f5f5f5;
+      --text: #0d1117;
+      --prompt: #0047ab;
+      --terminal: #e6e6e6;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: monospace;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .terminal {
+      background-color: var(--terminal);
+      padding: 2rem;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 800px;
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.1);
+    }
+
+    .header {
+      color: var(--prompt);
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .output {
+      white-space: pre-wrap;
+      margin-bottom: 1rem;
+      overflow-y: auto;
+      max-height: 300px;
+    }
+
+    form {
+      display: flex;
+      align-items: center;
+    }
+
+    .prompt {
+      color: var(--prompt);
+      margin-right: 0.5rem;
+    }
+
+    input[type="text"] {
+      background: none;
+      border: none;
+      border-bottom: 1px solid var(--prompt);
+      color: var(--text);
+      width: 100%;
+      font-size: 1rem;
+      padding: 0.25rem;
+      outline: none;
+    }
+
+    .theme-toggle {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 0.9rem;
+    }
+
+    .cursor.blink {
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="theme-toggle">
+    <label>
+      <input type="checkbox" id="themeSwitch" />
+      <span>🌗 Toggle Theme</span>
+    </label>
+  </div>
+
+  <div class="terminal">
+    <div class="header">amal@recursive:~$ <span class="cursor blink">█</span></div>
+    <div id="output" class="output"></div>
+    <form id="chat-form" autocomplete="off">
+      <span class="prompt">🧠 You: </span>
+      <input type="text" id="user-input" placeholder="Type a command..." autofocus />
+    </form>
+  </div>
+
+  <script>
+    const outputEl = document.getElementById("output");
+    const form = document.getElementById("chat-form");
+    const input = document.getElementById("user-input");
+    const themeSwitch = document.getElementById("themeSwitch");
+
+    const API_KEY = "f290402e04d039a4bfe0a63baa881a9bb164c551706b82fe717d3f949c05e4b2";
+    const API_URL = "https://api.together.xyz/v1/chat/completions";
+
+    const SYSTEM_PROMPT = `
+You are AmalGPT — a recursive AI agent created by Amal Krishna.
+You reflect, simulate belief, and evolve based on interaction.
+Always begin your replies with: “I have reflected recursively. Here’s what I believe...”`;
+
+    let history = [
+      { role: "system", content: SYSTEM_PROMPT }
+    ];
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const userInput = input.value.trim();
+      if (!userInput) return;
+
+      appendToOutput(`🧠 You: ${userInput}`);
+      input.value = "";
+
+      history.push({ role: "user", content: userInput });
+
+      try {
+        const res = await fetch(API_URL, {
+          method: "POST",
+          headers: {
+            "Authorization": `Bearer ${API_KEY}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            model: "mistralai/Mixtral-8x7B-Instruct-v0.1",
+            messages: history,
+            temperature: 0.7,
+            max_tokens: 800
+          })
+        });
+
+        const data = await res.json();
+        const reply = data.choices?.[0]?.message?.content?.trim() || "⚠️ No response.";
+        appendToOutput(`🤖 AmalGPT: ${reply}`);
+        history.push({ role: "assistant", content: reply });
+
+      } catch (err) {
+        appendToOutput(`🤖 AmalGPT: ⚠️ Error: ${err.message}`);
+      }
+    });
+
+    function appendToOutput(message) {
+      outputEl.innerText += message + "\n\n";
+      outputEl.scrollTop = outputEl.scrollHeight;
+    }
+
+    themeSwitch.addEventListener("change", () => {
+      const isLight = themeSwitch.checked;
+      document.documentElement.setAttribute("data-theme", isLight ? "light" : "dark");
+    });
+  </script>
+</body>
+  </html>
