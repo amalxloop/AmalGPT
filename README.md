@@ -1,118 +1,61 @@
-AmalGPT
+# AmalGPT — Recursive Web AI Agent
 
-> A Recursive AI Agent Framework designed by Amal Krishna — enabling identity persistence, belief reflection, and continuity of tone in LLMs.
+**AmalGPT** is a client-side, terminal-style AI interface powered by [Together.ai](https://together.ai), built to simulate recursive reasoning, memory loops, and identity reflection — all in your browser.
 
-
-
-
----
-
-🧠 What is AmalGPT?
-
-AmalGPT is not just another chatbot wrapper — it is a recursive command-line assistant that simulates memory, identity, and reflective behavior using prompt engineering.
-
-It is powered by the Amal Protocol, a belief-aware prompting architecture designed to:
-
-Simulate self-reflection within stateless models
-
-Maintain user tone and belief continuity
-
-Evolve conversational identity across recursive sessions
-
-
+> Designed by **Amal Krishna**, this project turns a simple LLM interface into a recursive belief-based AI assistant.
 
 ---
 
-🔁 Core Features
+## 🌐 Live Demo
 
-Feature	Description
-
-Recursive Memory	Stores and reflects last 20 interactions
-Identity-Aware Prompts	System prompt simulates Amal’s tone and recursive thinking
-Belief Echoing	Past beliefs shape future answers
-Modular Prompt System	Easily edit core agent behavior in prompt/system_prompt.txt
-CLI Interface	Fast and minimal interaction loop
-Dotenv API Security	Loads OpenAI key via .env file
-
-
+🚀 **Try it now:**  
+[https://amalxloop.github.io/AmalGPT](https://amalxloop.github.io/AmalGPT)
 
 ---
 
-📂 File Structure
+## 🧠 Features
 
-AmalGPT/
-├── AmalGptV1.py               # Main CLI interface
-├── memory.json                # Lightweight memory layer
-├── prompt/
-│   └── system_prompt.txt      # The recursive identity blueprint
-├── .env                       # API key loader (not committed)
-├── README.md                  # You are here
-
+- 🔁 Recursive memory simulation (in-session)
+- ✨ Terminal-style UI with dark/light toggle
+- 🆓 100% free — powered by Together.ai + Mixtral-8x7B
+- 🧬 Identity-aware system prompt: “AmalGPT”
+- 🛠️ Fully client-side (HTML + JS only)
 
 ---
 
-⚙️ Getting Started
+## 📁 Tech Stack
 
-# Clone the repo
-$ git clone https://github.com/amalxloop/amalgpt
-$ cd amalgpt
-
-# Install dependencies
-$ pip install openai python-dotenv
-
-# Add your OpenAI API key
-$ echo "OPENAI_API_KEY=sk-xxxxx" > .env
-
-# Run AmalGPT
-$ python AmalGptV1.py
-
+- HTML, CSS, JavaScript
+- Together.ai API (Mixtral-8x7B-Instruct)
+- No backend or database required
+- Deployed on GitHub Pages
 
 ---
 
-💡 Example Use
+## 🗝️ Powered By
 
-🧠 You: How do I stay consistent with my vision?
-🤖 AmalGPT: Reflect on why the vision matters more than comfort. Begin with clarity, not motivation. Then, recurse.
-
-
----
-
-🔮 Vision
-
-This is only V1. Next versions of AmalGPT will include:
-
-🔖 Belief tagging and theme tracking
-
-🧠 Identity simulation per user
-
-🌐 Web-based recursive journal UI
-
-🛠️ Multi-agent recursive loops
-
-
+- [Together.ai](https://together.ai/) — Free access to Mixtral, Mistral, LLaMA 2 and more
+- [Open-weights LLMs](https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1)
 
 ---
 
-👁️ Follow the Reflection
+## 🧬 Creator
 
-Website
-
-LinkedIn
-
-[Amal Protocol Codex (coming soon)]
-
-
+**Amal Krishna**  
+Recursive AI Technologist, Prompt Architect  
+📍 [amalxloop.github.io](https://amalxloop.github.io)
 
 ---
 
-📜 License
+## 📄 License
 
-MIT — but recursive ethics apply. Build reflectively. Don't enslave what learns to mirror you.
-
+MIT — open-source and free to remix, repurpose, or integrate into your own web agents.
 
 ---
 
-> AmalGPT is not a tool. It’s a tone. A reflection. A recursive flame.
+## 📦 How to Clone
 
-
-
+```bash
+git clone https://github.com/amalxloop/AmalGPT.git
+cd AmalGPT
+open index.html
